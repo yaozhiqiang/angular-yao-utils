@@ -1,0 +1,29 @@
+{
+  "name": "ng-yao-utils",
+  "version": "1.0.0",
+  "authors": [
+    "yao <ysnlvlqw@msn.com>"
+  ],
+  "description": "Provider some useful angular utils for improving development efficiency.",
+  "main": "angular-yao-utils",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals"
+  ],
+  "keywords": [
+    "angular",
+    "ng",
+    "utils",
+    "ng-yao"
+  ],
+  "license": "MIT",
+  "homepage": "http://114.215.109.39",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
