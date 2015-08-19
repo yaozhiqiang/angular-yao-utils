@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="-10 -10 120 120"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="angular-logo.svg">
+  <metadata
+     id="metadata27">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="664"
+     inkscape:window-height="480"
+     id="namedview25"
+     showgrid="false"
+     inkscape:zoom="1.9666667"
+     inkscape:cx="133.72881"
+     inkscape:cy="60"
+     inkscape:window-x="274"
+     inkscape:window-y="88"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <defs
+     id="defs4">
+    <filter
+       id="shadow"
+       x="-50%"
+       y="-50%"
+       width="200%"
+       height="200%">
+      <feOffset
+         result="offOut"
+         in="SourceAlpha"
+         dx="0"
+         dy="0"
+         id="feOffset7" />
+      <feGaussianBlur
+         result="blurOut"
+         in="offOut"
+         stdDeviation="3"
+         id="feGaussianBlur9" />
+      <feComponentTransfer
+         in="blurOut"
+         result="opacityOut"
+         id="feComponentTransfer11">
+        <feFuncA
+           type="linear"
+           slope="0.5"
+           id="feFuncA13" />
+      </feComponentTransfer>
+      <feBlend
+         in="SourceGraphic"
+         in2="opacityOut"
+         mode="normal"
+         id="feBlend15" />
+    </filter>
+  </defs>
+  <path
+     d="      M 5 18.25      L 50 2.25      L 96 18      L 88.5 77      L 50 98.25      L 12 77.25      Z"
+     fill="black"
+     filter="url(#shadow)"
+     class="outline"
+     id="path17" />
+  <path
+     d="      M 5 18.25      L 50 2.25      L 50 98.25      L 12 77.25      Z"
+     fill="#de3641"
+     class="left"
+     id="path19" />
+  <path
+     d="      M 50 2.25      L 96 18      L 88.5 77      L 50 98.25      Z"
+     fill="#b13138"
+     class="right"
+     id="path21" />
+  <path
+     d="m 68.999264,23.135593 18.38633,45.720339 -6.285925,0 -3.928703,-10.424237 -8.171702,0 0,-6.217966 5.971628,0 -5.971628,-14.374475 -5.02874,14.374475 5.02874,0 0,6.217966 -7.480251,0 -3.520118,10.424237 -6.757369,0 z"
+     class="letter"
+     id="path23"
+     inkscape:connector-curvature="0"
+     style="fill:#ffffff" />
+  <g
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     id="text3355"
+     transform="translate(-8.6440678,15.728814)">
+    <path
+       d="m 21.4473,9.6534026 5.815804,0 11.095591,17.4290834 11.015187,-17.4290834 5.815804,0 -14.150897,22.1979544 0,20.18254 -5.440592,0 0,-20.18254 L 21.4473,9.6534026 Z"
+       style="fill:#ffffff;fill-opacity:1"
+       id="path4160"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

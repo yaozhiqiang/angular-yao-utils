@@ -1,0 +1,44 @@
+{
+  "name": "ng-yao-utils",
+  "version": "1.0.0",
+  "description": "Provider some useful angular utils for improving development efficiency.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yaoshining/angular-yao-utils.git"
+  },
+  "keywords": [
+    "angular",
+    "utils",
+    "angular-yao"
+  ],
+  "author": "yaoshining",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yaoshining/angular-yao-utils/issues"
+  },
+  "homepage": "https://github.com/yaoshining/angular-yao-utils",
+  "devDependencies": {
+    "babel-core": "^5.8.22",
+    "babel-loader": "^5.3.2",
+    "browser-sync": "^2.8.2",
+    "browser-sync-spa": "^1.0.2",
+    "grunt-util": "^0.5.3",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-inject": "^1.5.0",
+    "gulp-load-plugins": "^1.0.0-rc.1",
+    "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-util": "^3.0.6",
+    "gulp-webpack": "^1.5.0",
+    "jshint": "^2.8.0",
+    "jshint-loader": "^0.8.3",
+    "lodash": "^3.10.1",
+    "wiredep": "^3.0.0-beta",
+    "wrench": "^1.5.8"
+  }
+}
