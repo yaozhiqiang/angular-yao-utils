@@ -4,6 +4,6 @@
 import StickyDirective from './sticky.directive';
 
 var stickyModule = angular.module('ngYao.sticky',[])
-    .directive('ngYaoSticky', () => new StickyDirective());
+    .directive('yaoSticky', () => new StickyDirective());
 
 export default stickyModule;
