@@ -50,3 +50,7 @@ gulp.task('scripts', function () {
 gulp.task('scripts:watch',['scripts'],function (callback) {
     return webpack(true,'index.module.js','/app','/serve/app',callback);
 });
+
+gulp.task('scripts:product', function () {
+    return webpack(false,'angular-yao-utils.js','/app','/product');
+});

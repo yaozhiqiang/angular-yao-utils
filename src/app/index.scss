@@ -16,10 +16,12 @@
   background: -webkit-linear-gradient(top, #185694 0%, #106cc8 100%);
   background: -moz-linear-gradient(top, #185694 0%, #106cc8 100%);
   background: linear-gradient(top, #185694 0%, #106cc8 100%);
-  border-bottom: 1px solid #267ED5;
   flex-shrink: 0;
   z-index: 2;
 }
 .site-sidenav {
   background: #106CC8;
+}
+.site-sidenav md-content {
+  background: transparent;
 }

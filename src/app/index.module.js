@@ -1,8 +1,11 @@
 /**
- * Created by tongda on 15/8/19.
+ * Created by yao
  */
-angular.module('angular-yao-utils',['ngMaterial','ui.router'])
-.config(function(){
+import routesConfig from './index.routes';
+import ngYaoUtils from './angular-yao-utils';
+angular.module('ngYaoUtilsDemo',[ngYaoUtils.name,'ngMaterial','ui.router'])
+    .config(function(){
 
     })
-.run();
+    .config(routesConfig)
+    .run();
