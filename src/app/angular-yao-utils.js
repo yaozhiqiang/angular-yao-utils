@@ -1,6 +1,8 @@
 /**
  * Created by tongda on 15/8/26.
  */
-var ngYaoUtils = angular.module('angular-yao-utils',[]);
+import stickyModule from './sticky/sticky.module';
+
+var ngYaoUtils = angular.module('angular-yao-utils',[stickyModule.name]);
 
 export default ngYaoUtils;

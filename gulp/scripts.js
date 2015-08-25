@@ -14,6 +14,9 @@ function webpack(watch, filename,sourceDir, destDir,callback) {
             preLoaders: [{ test: /\.js$/, exclude: /node_modules/, loader: 'jshint-loader'}],
             loaders: [{ test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}]
         },
+        jshint: {
+            esnext: true
+        },
         output: { filename: filename}
     };
 
