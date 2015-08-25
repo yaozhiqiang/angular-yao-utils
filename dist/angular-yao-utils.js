@@ -83,7 +83,7 @@
 
 	var _stickyDirective2 = _interopRequireDefault(_stickyDirective);
 
-	var stickyModule = angular.module('ngYao.sticky', []).directive('ngYaoSticky', function () {
+	var stickyModule = angular.module('ngYao.sticky', []).directive('yaoSticky', function () {
 	  return new _stickyDirective2['default']();
 	});
 
