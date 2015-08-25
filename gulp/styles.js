@@ -48,3 +48,18 @@ gulp.task('styles', function () {
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/app/')))
     .pipe(browserSync.reload({ stream: true }));
 });
+
+gulp.task('styles:product',function(){
+  var sassOptions = {
+    style: 'expanded'
+  };
+
+  return gulp.src([
+    path.join(conf.paths.src, '/app/**/*.scss'),
+    path.join('!' + conf.paths.src, '/app/index.scss')
+  ])
+    .pipe($.sass(sassOptions)).on('error', conf.errorHandler('Sass'))
+    .pipe($.autoprefixer()).on('error', conf.errorHandler('Autoprefixer'))
+    .pipe($.concat('angular-yao-utils.css'))
+    .pipe(gulp.dest(path.join(conf.paths.tmp, '/product')))
+});

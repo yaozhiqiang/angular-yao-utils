@@ -32,11 +32,21 @@ gulp.task('fonts', function () {
 });
 
 gulp.task('build', ['scripts:product'], function(){
+    var jsFilter = $.filter('**/*.js',{restore: true});
+    var cssFilter = $.filter('**/*.css',{restore: true});
     return gulp.src([
-        path.join(conf.paths.tmp + '/product/*.js'),
-        path.join(conf.paths.tmp + '/partials/*.js')
+        path.join(conf.paths.tmp + '/product/*.{js,css}'),
+        path.join(conf.paths.tmp + '/partials/*.{js,css}')
     ])
-        .pipe($.concat('angular-yao-utils.min.js'))
+        .pipe(jsFilter)
+        .pipe($.concat('angular-yao-utils.js'))
+        .pipe(gulp.dest(conf.paths.dist))
         .pipe($.uglify())
+        .pipe(jsFilter.restore)
+        .pipe(cssFilter)
+        .pipe(gulp.dest(conf.paths.dist))
+        .pipe($.cssmin())
+        .pipe(cssFilter.restore)
+        .pipe($.rename({suffix: '.min'}))
         .pipe(gulp.dest(conf.paths.dist));
 });
