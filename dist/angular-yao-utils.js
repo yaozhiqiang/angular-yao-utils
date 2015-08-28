@@ -324,14 +324,14 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-	var PageableController = function PageableController($scope, $attrs) {
+	var PageableController = function PageableController($scope, $attrs, $parse) {
 	    'ngInject';
 
 	    _classCallCheck(this, PageableController);
 
 	    $scope.$currentPage = 1;
 	    $scope.$pageSize = 15;
-	    var pageableModel = $scope[$attrs.yaoPageableModel];
+	    var pageableModel = $parse($attrs.yaoPageableModel)($scope);
 	    $scope.$currentRows = [];
 	    $scope.$totalPages = 0;
 

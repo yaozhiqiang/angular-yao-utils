@@ -2,11 +2,11 @@
  * Created by tongda on 15/8/28.
  */
 class PageableController {
-    constructor($scope,$attrs) {
+    constructor($scope,$attrs,$parse) {
         'ngInject';
         $scope.$currentPage = 1;
         $scope.$pageSize = 15;
-        let pageableModel = $scope[$attrs.yaoPageableModel];
+        let pageableModel = $parse($attrs.yaoPageableModel)($scope);
         $scope.$currentRows = [];
         $scope.$totalPages = 0;
 
