@@ -1,13 +1,18 @@
 /**
  * Created by tongda on 15/8/25.
  */
+
 function routesConfig($stateProvider,$urlRouterProvider) {
     $stateProvider.state('sticky',{
         url: '/sticky',
-        templateUrl: 'app/sticky/sticky.tpl.html'
+        templateUrl: 'app/sticky/sticky.html'
     }).state('main',{
         url: '/',
-        templateUrl: 'app/main/main.tpl.html'
+        templateUrl: 'app/main/main.html'
+    }).state('pagination',{
+        url: '/pagination',
+        templateUrl: 'app/pageable/demo/pageable.html',
+        controller: 'PageableDemoController'
     });
     $urlRouterProvider.otherwise('/');
 }

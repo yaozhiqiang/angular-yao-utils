@@ -1,0 +1,13 @@
+<div yao-pageable yao-pageable-model="dataList">
+    <ul>
+        <li ng-repeat="elem in $currentRows">
+            {{elem.name}} | {{elem.description}}
+        </li>
+    </ul>
+
+    <button yao-pageable-previous="">previous</button>
+    <button yao-pageable-next>next</button>
+    <input ng-model="$currentPage" />
+    <input ng-model="$pageSize" />
+    <input ng-model="$totalPages" />
+</div>

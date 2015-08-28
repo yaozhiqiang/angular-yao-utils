@@ -31,7 +31,7 @@ gulp.task('fonts', function () {
         .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
 });
 
-gulp.task('build', ['scripts:product'], function(){
+gulp.task('build', ['scripts:product','partials'], function(){
     var jsFilter = $.filter('**/*.js',{restore: true});
     var cssFilter = $.filter('**/*.css',{restore: true});
     return gulp.src([
