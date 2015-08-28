@@ -1,0 +1,5 @@
+[yao-pageable-next],[yao-pageable-previous] {
+  &.disabled {
+    pointer-events: none;
+  }
+}

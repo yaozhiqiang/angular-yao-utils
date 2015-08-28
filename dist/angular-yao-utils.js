@@ -260,9 +260,9 @@
 	                });
 	                scope.$on('pageable.afterPaginate', function (event, pageNum) {
 	                    if (pageNum === scope.$totalPages) {
-	                        iElement.addClass('ng-hide');
+	                        iElement.addClass('disabled');
 	                    } else {
-	                        iElement.removeClass('ng-hide');
+	                        iElement.removeClass('disabled');
 	                    }
 	                });
 	            }
@@ -293,9 +293,9 @@
 	                });
 	                scope.$on('pageable.afterPaginate', function (event, pageNum) {
 	                    if (pageNum <= 1) {
-	                        iElement.addClass('ng-hide');
+	                        iElement.addClass('disabled');
 	                    } else {
-	                        iElement.removeClass('ng-hide');
+	                        iElement.removeClass('disabled');
 	                    }
 	                });
 	            }
@@ -353,8 +353,9 @@
 	    };
 
 	    function refreshRows() {
-	        $scope.$currentPage = $scope.$currentPage || 1;
 	        $scope.$totalPages = Math.ceil(pageableModel.length / $scope.$pageSize);
+	        $scope.$currentPage = $scope.$currentPage || 1;
+	        $scope.$currentPage = $scope.$currentPage > $scope.$totalPages ? $scope.$totalPages : $scope.$currentPage;
 	        var firstIndex = ($scope.$currentPage - 1) * $scope.$pageSize;
 	        var lastNum = $scope.$pageSize * $scope.$currentPage > pageableModel.length ? pageableModel.length : $scope.$pageSize * $scope.$currentPage;
 	        var rows = [];

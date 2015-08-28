@@ -28,8 +28,9 @@ class PageableController {
         };
 
         function refreshRows() {
-            $scope.$currentPage = $scope.$currentPage || 1;
             $scope.$totalPages = Math.ceil(pageableModel.length/$scope.$pageSize);
+            $scope.$currentPage = $scope.$currentPage || 1;
+            $scope.$currentPage = $scope.$currentPage > $scope.$totalPages?$scope.$totalPages:$scope.$currentPage;
             let firstIndex = ($scope.$currentPage - 1) * $scope.$pageSize;
             let lastNum = $scope.$pageSize * $scope.$currentPage > pageableModel.length? pageableModel.length:$scope.$pageSize * $scope.$currentPage;
             let rows = [];

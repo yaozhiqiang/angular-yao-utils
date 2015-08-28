@@ -1,3 +1,6 @@
+[yao-pageable-next].disabled, [yao-pageable-previous].disabled {
+  pointer-events: none; }
+
 .sticky {
   position: fixed;
   top: 0; }

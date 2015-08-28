@@ -44,9 +44,9 @@ class PageableNextDirective {
                     });
                     scope.$on('pageable.afterPaginate',function(event,pageNum){
                         if(pageNum === scope.$totalPages){
-                            iElement.addClass('ng-hide');
+                            iElement.addClass('disabled');
                         } else {
-                            iElement.removeClass('ng-hide');
+                            iElement.removeClass('disabled');
                         }
                     });
                 }
@@ -79,9 +79,9 @@ class PageablePreviousDirective {
                     });
                     scope.$on('pageable.afterPaginate',function(event,pageNum){
                         if(pageNum <= 1){
-                            iElement.addClass('ng-hide');
+                            iElement.addClass('disabled');
                         } else {
-                            iElement.removeClass('ng-hide');
+                            iElement.removeClass('disabled');
                         }
                     });
                 }
