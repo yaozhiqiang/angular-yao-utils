@@ -37,6 +37,7 @@
     "gulp-inject": "^1.5.0",
     "gulp-load-plugins": "^1.0.0-rc.1",
     "gulp-minify-html": "^1.0.4",
+    "gulp-ng-annotate": "^1.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.0.4",
     "gulp-sourcemaps": "^1.5.2",
@@ -46,6 +47,7 @@
     "jshint": "^2.8.0",
     "jshint-loader": "^0.8.3",
     "lodash": "^3.10.1",
+    "uglify-save-license": "^0.4.1",
     "wiredep": "^3.0.0-beta",
     "wrench": "^1.5.8"
   }
