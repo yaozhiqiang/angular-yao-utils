@@ -50,7 +50,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, '__esModule', {
-	  value: true
+	    value: true
 	});
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -63,7 +63,11 @@
 
 	var _pageablePageableModule2 = _interopRequireDefault(_pageablePageableModule);
 
-	var ngYaoUtils = angular.module('angular-yao-utils', [_stickyStickyModule2['default'].name, _pageablePageableModule2['default'].name]);
+	var _coverflowCoverflowModule = __webpack_require__(9);
+
+	var _coverflowCoverflowModule2 = _interopRequireDefault(_coverflowCoverflowModule);
+
+	var ngYaoUtils = angular.module('angular-yao-utils', [_stickyStickyModule2['default'].name, _pageablePageableModule2['default'].name, _coverflowCoverflowModule2['default'].name]);
 
 	exports['default'] = ngYaoUtils;
 	module.exports = exports['default'];
@@ -472,6 +476,92 @@
 	};
 
 	exports['default'] = PaginationIndicatorDirective;
+	module.exports = exports['default'];
+
+/***/ },
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by tongda on 15/9/6.
+	 */
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _directivesCoverflowDirective = __webpack_require__(10);
+
+	var _directivesCoverflowDirective2 = _interopRequireDefault(_directivesCoverflowDirective);
+
+	var coverflowModule = angular.module('ngYao.coverflow', []).directive('yaoCoverflow', _directivesCoverflowDirective2['default']);
+
+	exports['default'] = coverflowModule;
+	module.exports = exports['default'];
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	/**
+	 * Created by tongda on 15/9/6.
+	 */
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	var directive = {
+	    restrict: 'A',
+	    scope: false,
+	    link: linkFuc
+	};
+
+	function linkFuc(scope, el) {
+	    var sections = el.find('section');
+	    var activeIndex = 0;
+	    var len = sections.length;
+	    refresh();
+	    function refresh() {
+	        sections.removeClass('active');
+	        sections.removeClass('left');
+	        sections.removeClass('right');
+	        angular.forEach(sections, function (cover, index) {
+	            if (activeIndex === index) {
+	                angular.element(cover).addClass('active');
+	            } else {
+	                if (getRightIndexes().indexOf(index) > -1) {
+	                    angular.element(cover).addClass('right');
+	                } else {
+	                    angular.element(cover).addClass('left');
+	                }
+	            }
+	            angular.element(cover).on('click', function () {
+	                alert(1);
+	            });
+	        });
+	    }
+	    function getRightIndexes() {
+	        var indexes = [];
+	        for (var i = activeIndex + 1; i < Math.ceil(len / 2); i++) {
+	            var index = i;
+	            if (i >= len) {
+	                index = i % len;
+	            }
+	            indexes.push(index);
+	        }
+	        return indexes;
+	    }
+	}
+
+	function coverFlowFactory() {
+	    return directive;
+	}
+	exports['default'] = coverFlowFactory;
 	module.exports = exports['default'];
 
 /***/ }
