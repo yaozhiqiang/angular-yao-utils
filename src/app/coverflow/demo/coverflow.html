@@ -1,0 +1,55 @@
+<style shim-shadow>
+    [yao-coverflow] {
+        position: relative;
+        width: 100%;
+        height: 90%;
+        perspective: 2000px;
+    }
+    [yao-coverflow] > section {
+        position: absolute;
+        left: 30%;
+        right: 30%;
+        top: 20%;
+        bottom: 10%;
+        transition: all 1s;
+        box-shadow: 0 0 20px 0 rgba(255, 255, 255, .3);
+        -webkit-box-reflect: below 1px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.6, transparent), to(rgba(255, 255, 255, 0.5)));
+    }
+    [yao-coverflow] > section.left {
+        transform-origin: 0px 50px;
+        transform: rotateY(80deg) scale3d(0.833333333333333, 0.833333333333333, 1);
+    }
+    [yao-coverflow] > section.right {
+        transform-origin: 100% 50px;
+        transform: rotateY(-80deg) scale3d(0.833333333333333, 0.833333333333333, 1);
+    }
+    [yao-coverflow] > section.active {
+        transform: none;
+        z-index: 10;
+    }
+</style>
+<div style="height: 500px;background-color: black">
+    <div yao-coverflow>
+        <section style="background-color: #0000ee">
+            asdasd
+        </section>
+        <section style="background-color: #133244;margin-right: -10%;z-index: 9">
+            asdasd
+        </section>
+        <section style="background-color: #c3325f;margin-right: -20%;z-index: 8">
+            asdasd
+        </section>
+        <section style="background-color: #c3325f;margin-right: -30%;z-index: 7">
+            asdasd
+        </section>
+        <section style="background-color: #d107b2;margin-left: -10%;z-index: 9">
+            asfweq
+        </section>
+        <section style="background-color: #fc8c84;margin-left: -20%;z-index: 8">
+            asfweq
+        </section>
+        <section style="background-color: #fc8c84;margin-left: -30%;z-index: 7">
+            asfweq
+        </section>
+    </div>
+</div>

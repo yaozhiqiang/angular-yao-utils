@@ -13,6 +13,9 @@ function routesConfig($stateProvider,$urlRouterProvider) {
         url: '/pagination',
         templateUrl: 'app/pageable/demo/pageable.html',
         controller: 'PageableDemoController'
+    }).state('coverflow',{
+        url: '/coverflow',
+        templateUrl: 'app/coverflow/demo/coverflow.html'
     });
     $urlRouterProvider.otherwise('/');
 }
