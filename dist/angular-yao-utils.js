@@ -67,7 +67,11 @@
 
 	var _coverflowCoverflowModule2 = _interopRequireDefault(_coverflowCoverflowModule);
 
-	var ngYaoUtils = angular.module('angular-yao-utils', [_stickyStickyModule2['default'].name, _pageablePageableModule2['default'].name, _coverflowCoverflowModule2['default'].name]);
+	var _resizeResizeModule = __webpack_require__(11);
+
+	var _resizeResizeModule2 = _interopRequireDefault(_resizeResizeModule);
+
+	var ngYaoUtils = angular.module('angular-yao-utils', [_stickyStickyModule2['default'].name, _pageablePageableModule2['default'].name, _coverflowCoverflowModule2['default'].name, _resizeResizeModule2['default'].name]);
 
 	exports['default'] = ngYaoUtils;
 	module.exports = exports['default'];
@@ -562,6 +566,76 @@
 	    return directive;
 	}
 	exports['default'] = coverFlowFactory;
+	module.exports = exports['default'];
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by tongda on 15/9/8.
+	 */
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _directivesResizeDirective = __webpack_require__(12);
+
+	var _directivesResizeDirective2 = _interopRequireDefault(_directivesResizeDirective);
+
+	var resizeModule = angular.module('ngYao.resize', []).directive('yaoResize', _directivesResizeDirective2['default']);
+	exports['default'] = resizeModule;
+	module.exports = exports['default'];
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	/**
+	 * Created by tongda on 15/9/8.
+	 */
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	function ResizeDirectiveFactory($window) {
+	    'ngInject';
+	    return function (scope, element, attr) {
+
+	        var w = angular.element($window);
+
+	        scope.$watch(function () {
+	            return {
+	                'h': $window.innerHeight,
+	                'w': $window.innerWidth
+	            };
+	        }, function (newValue) {
+	            scope.windowHeight = newValue.h;
+	            scope.windowWidth = newValue.w;
+
+	            scope.resizeWithOffset = function (offsetH) {
+
+	                scope.$eval(attr.notifier);
+
+	                return {
+	                    'height': newValue.h - offsetH + 'px'
+	                    //,'width': (newValue.w - 100) + 'px'
+	                };
+	            };
+	        }, true);
+
+	        w.bind('resize', function () {
+	            scope.$apply();
+	        });
+	    };
+	}
+
+	exports['default'] = ResizeDirectiveFactory;
 	module.exports = exports['default'];
 
 /***/ }

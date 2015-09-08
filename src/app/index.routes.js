@@ -16,6 +16,9 @@ function routesConfig($stateProvider,$urlRouterProvider) {
     }).state('coverflow',{
         url: '/coverflow',
         templateUrl: 'app/coverflow/demo/coverflow.html'
+    }).state('resize',{
+        url: '/resize',
+        templateUrl: 'app/resize/demo/resize.html'
     });
     $urlRouterProvider.otherwise('/');
 }
