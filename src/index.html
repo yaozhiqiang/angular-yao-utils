@@ -21,23 +21,25 @@
 <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
     <header class="nav-header" style="text-align: center">
         <img src="app/assets/images/logo.svg" width="80%" />
+        <h3 style="color: #eeeeee;margin: 0">Angular-Yao-Utils</h3>
     </header>
+    <hr style="width: 100%" width="1" />
     <md-content flex role="navigation" class="md-default-theme">
         <ul>
-            <li>
-                <a ui-sref="sticky">sticky</a>
+            <li class="nav-item" ui-sref-active="active">
+                <a ui-sref="sticky">Sticky</a>
             </li>
-            <li>
-                <a href ui-sref="pagination">pagination</a>
+            <li class="nav-item" ui-sref-active="active">
+                <a href ui-sref="pagination">Pagination</a>
             </li>
-            <li>
-                <a href ui-sref="coverflow">coverflow</a>
+            <li class="nav-item" ui-sref-active="active">
+                <a href ui-sref="coverflow">Coverflow</a>
             </li>
-            <li>
-                <a href ui-sref="resize">resize</a>
+            <li class="nav-item" ui-sref-active="active">
+                <a href ui-sref="resize">Resize</a>
             </li>
-            <li>
-                <a href ui-sref="charts">charts</a>
+            <li class="nav-item" ui-sref-active="active">
+                <a href ui-sref="charts">Charts</a>
             </li>
         </ul>
     </md-content>
@@ -49,7 +51,7 @@
             <!-- fill up the space between left and right area -->
             <span flex></span>
             <md-button>
-                Right Bar Button
+                <!--Right Bar Button-->
             </md-button>
         </div>
     </md-toolbar>

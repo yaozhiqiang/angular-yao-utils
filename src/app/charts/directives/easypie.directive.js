@@ -10,6 +10,7 @@ function linkFunc(scope,el) {
     var trackSize = 120;
     var innerColor = scope.innerColor || 'transparent';
     var trackColor = scope.trackColor || '#222';
+    var effect = scope.effect || 'bounce';
 
     scope.$watch('percent',function(newValue){
         percent = newValue || 0;
@@ -128,7 +129,7 @@ function linkFunc(scope,el) {
         chart.selectAll('g.yao-easypie-bar path')
             .data(data)
             .transition()
-            .ease('bounce-in')
+            .ease(effect)
             .duration(2500)
             .attrTween("d", arcTween);
         chart.selectAll('.yao-easypie-track')
@@ -143,7 +144,8 @@ function EasyPieDirectiveFactory() {
             barColor: '@',
             barWidth: '=',
             trackColor: '@',
-            innerColor: '@'
+            innerColor: '@',
+            effect: '@'
         },
         link: linkFunc
     };

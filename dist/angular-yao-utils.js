@@ -687,6 +687,7 @@
 	    var trackSize = 120;
 	    var innerColor = scope.innerColor || 'transparent';
 	    var trackColor = scope.trackColor || '#222';
+	    var effect = scope.effect || 'bounce';
 
 	    scope.$watch('percent', function (newValue) {
 	        percent = newValue || 0;
@@ -768,7 +769,7 @@
 	        data = pie([percent, 100 - percent]);
 	        console.log(data);
 	        //data.pop();
-	        chart.selectAll('g.yao-easypie-bar path').data(data).transition().ease('bounce-in').duration(2500).attrTween("d", arcTween);
+	        chart.selectAll('g.yao-easypie-bar path').data(data).transition().ease(effect).duration(2500).attrTween("d", arcTween);
 	        chart.selectAll('.yao-easypie-track').text(percent);
 	    }
 	}
@@ -780,7 +781,8 @@
 	            barColor: '@',
 	            barWidth: '=',
 	            trackColor: '@',
-	            innerColor: '@'
+	            innerColor: '@',
+	            effect: '@'
 	        },
 	        link: linkFunc
 	    };

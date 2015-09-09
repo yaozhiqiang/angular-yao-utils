@@ -27,3 +27,18 @@
 .site-sidenav md-content {
   background: transparent;
 }
+.nav-item {
+  padding: 8px;
+  text-indent: 2em;
+}
+.nav-item.active {
+  background-color: rgba(255, 255, 255, .2);
+}
+.nav-item > a{
+  color: #ffffff;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+md-content > ul {
+  padding: 0;
+}
