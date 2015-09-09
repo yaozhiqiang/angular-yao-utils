@@ -19,6 +19,9 @@ function routesConfig($stateProvider,$urlRouterProvider) {
     }).state('resize',{
         url: '/resize',
         templateUrl: 'app/resize/demo/resize.html'
+    }).state('charts',{
+        url: '/charts',
+        templateUrl: 'app/charts/demo/charts.html'
     });
     $urlRouterProvider.otherwise('/');
 }

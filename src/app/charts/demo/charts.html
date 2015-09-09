@@ -1,0 +1,18 @@
+<style shim-shadow>
+    .chart div {
+        font: 10px sans-serif;
+        background-color: steelblue;
+        text-align: right;
+        padding: 3px;
+        margin: 1px;
+        color: white;
+    }
+
+</style>
+<div style="width: 200px;height: 200px" ng-init="percent1=60">
+    <input ng-model="percent1" />
+    <yao-easypie class="chart" percent="percent1" bar-color="#13BDD1"></yao-easypie>
+</div>
+<div style="width: 200px;height: 200px">
+    <yao-easypie class="chart" percent="40" bar-color="red" track-color="#fff" inner-color="#000"></yao-easypie>
+</div>
