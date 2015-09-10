@@ -22,6 +22,9 @@ function routesConfig($stateProvider,$urlRouterProvider) {
     }).state('charts',{
         url: '/charts',
         templateUrl: 'app/charts/demo/charts.html'
+    }).state('clocks',{
+        url: '/clocks',
+        templateUrl: 'app/clocks/demo/clocks.html'
     });
     $urlRouterProvider.otherwise('/');
 }
