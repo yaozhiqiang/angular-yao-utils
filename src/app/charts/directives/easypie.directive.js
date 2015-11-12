@@ -1,5 +1,5 @@
 /**
- * Created by tongda on 15/9/9.
+ * Created by yao on 15/9/9.
  */
 function linkFunc(scope,el) {
     var viewPortWidth = 400;
@@ -87,7 +87,7 @@ function linkFunc(scope,el) {
         .attr('fill',(d, i) => {
             return barColor || color(i);
         })
-        .attr('style','z-index: 5')
+        .style('z-index',5)
         .attr('d',arc)
         .each(function(d) {
             this._current = d;
@@ -97,7 +97,7 @@ function linkFunc(scope,el) {
         .attr('text-anchor','middle')
         .attr('fill',trackColor)
         .attr('dy',trackSize*0.35 + 'px')
-        .attr('style','font-size: '+trackSize+'px')
+        .style('font-size', trackSize+'px')
         .attr('class','yao-easypie-track')
         .text(percent);
 
@@ -105,7 +105,7 @@ function linkFunc(scope,el) {
         .attr('fill',trackColor)
         .attr('dy',-trackSize*0.5)
         .attr('dx',trackSize*0.5)
-        .attr('style','font-size: '+trackSize/4+'px')
+        .style('font-size', trackSize/4+'px')
         .text(' %');
 
     chart.insert('circle',':first-child')
@@ -118,22 +118,21 @@ function linkFunc(scope,el) {
         var i = d3.interpolate(this._current, a);
         this._current = i(a);
         return (t) => {
+            chart.selectAll('.yao-easypie-track')
+                .text(Math.floor(i(t).value));
             return arc(i(t));
         };
     }
 
     function draw() {
         data = pie([percent,100 - percent]);
-        console.log(data);
-        //data.pop();
+
         chart.selectAll('g.yao-easypie-bar path')
             .data(data)
             .transition()
             .ease(effect)
             .duration(2500)
             .attrTween("d", arcTween);
-        chart.selectAll('.yao-easypie-track')
-            .text(percent);
     }
 }
 function EasyPieDirectiveFactory() {

@@ -1,5 +1,5 @@
 /**
- * Created by tongda on 15/9/10.
+ * Created by yao on 15/9/10.
  */
 function ClocksDirectiveFactory($interval) {
     'ngInject';
@@ -150,7 +150,6 @@ function ClocksDirectiveFactory($interval) {
                     'font-family': '"Josefin Sans", sans-serif'
                 })
                 .text(function(d){
-                    console.log(d + ',' +hourScale(d));
                     return d;
                 });
         }
