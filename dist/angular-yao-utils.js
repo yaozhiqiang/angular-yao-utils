@@ -75,11 +75,15 @@
 
 	var _chartsChartsModule2 = _interopRequireDefault(_chartsChartsModule);
 
-	var _clocksClocksModule = __webpack_require__(15);
+	var _clocksClocksModule = __webpack_require__(16);
 
 	var _clocksClocksModule2 = _interopRequireDefault(_clocksClocksModule);
 
-	var ngYaoUtils = angular.module('angular-yao-utils', [_stickyStickyModule2['default'].name, _pageablePageableModule2['default'].name, _coverflowCoverflowModule2['default'].name, _resizeResizeModule2['default'].name, _chartsChartsModule2['default'].name, _clocksClocksModule2['default'].name]);
+	var _scrollbarScrollbarModule = __webpack_require__(18);
+
+	var _scrollbarScrollbarModule2 = _interopRequireDefault(_scrollbarScrollbarModule);
+
+	var ngYaoUtils = angular.module('angular-yao-utils', [_stickyStickyModule2['default'].name, _pageablePageableModule2['default'].name, _coverflowCoverflowModule2['default'].name, _resizeResizeModule2['default'].name, _chartsChartsModule2['default'].name, _clocksClocksModule2['default'].name, _scrollbarScrollbarModule2['default'].name]);
 
 	exports['default'] = ngYaoUtils;
 	module.exports = exports['default'];
@@ -665,7 +669,11 @@
 
 	var _directivesEasypieDirective2 = _interopRequireDefault(_directivesEasypieDirective);
 
-	var chartsModule = angular.module('ngYao.charts', []).directive('yaoEasypie', _directivesEasypieDirective2['default']);
+	var _directivesThermometerDirective = __webpack_require__(15);
+
+	var _directivesThermometerDirective2 = _interopRequireDefault(_directivesThermometerDirective);
+
+	var chartsModule = angular.module('ngYao.charts', []).directive('yaoThermometer', _directivesThermometerDirective2['default']).directive('yaoEasypie', _directivesEasypieDirective2['default']);
 
 	exports['default'] = chartsModule;
 	module.exports = exports['default'];
@@ -675,7 +683,7 @@
 /***/ function(module, exports) {
 
 	/**
-	 * Created by tongda on 15/9/9.
+	 * Created by yao on 15/9/9.
 	 */
 	'use strict';
 
@@ -751,13 +759,13 @@
 
 	    arcs.append('path').attr('fill', function (d, i) {
 	        return barColor || color(i);
-	    }).attr('style', 'z-index: 5').attr('d', arc).each(function (d) {
+	    }).style('z-index', 5).attr('d', arc).each(function (d) {
 	        this._current = d;
 	    });
 
-	    arcs.append('text').attr('text-anchor', 'middle').attr('fill', trackColor).attr('dy', trackSize * 0.35 + 'px').attr('style', 'font-size: ' + trackSize + 'px').attr('class', 'yao-easypie-track').text(percent);
+	    arcs.append('text').attr('text-anchor', 'middle').attr('fill', trackColor).attr('dy', trackSize * 0.35 + 'px').style('font-size', trackSize + 'px').attr('class', 'yao-easypie-track').text(percent);
 
-	    arcs.append('text').attr('fill', trackColor).attr('dy', -trackSize * 0.5).attr('dx', trackSize * 0.5).attr('style', 'font-size: ' + trackSize / 4 + 'px').text(' %');
+	    arcs.append('text').attr('fill', trackColor).attr('dy', -trackSize * 0.5).attr('dx', trackSize * 0.5).style('font-size', trackSize / 4 + 'px').text(' %');
 
 	    chart.insert('circle', ':first-child').attr("cx", viewPortWidth / 2).attr("cy", viewPortHeight / 2).attr("fill", innerColor).attr("r", innerRadius - 5);
 
@@ -765,16 +773,15 @@
 	        var i = d3.interpolate(this._current, a);
 	        this._current = i(a);
 	        return function (t) {
+	            chart.selectAll('.yao-easypie-track').text(Math.floor(i(t).value));
 	            return arc(i(t));
 	        };
 	    }
 
 	    function draw() {
 	        data = pie([percent, 100 - percent]);
-	        console.log(data);
-	        //data.pop();
+
 	        chart.selectAll('g.yao-easypie-bar path').data(data).transition().ease(effect).duration(2500).attrTween("d", arcTween);
-	        chart.selectAll('.yao-easypie-track').text(percent);
 	    }
 	}
 	function EasyPieDirectiveFactory() {
@@ -799,6 +806,101 @@
 
 /***/ },
 /* 15 */
+/***/ function(module, exports) {
+
+	/**
+	 * Created by yao on 15/9/13.
+	 */
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	var width = 120,
+	    height = 120,
+	    cx = width / 2,
+	    cy = height / 2;
+
+	var scale = d3.scale.linear().range([-360 / 25 * 10, 360 / 25 * 15]).domain([0, 25]);
+
+	var bigScale = d3.scale.linear().range([-360 / 25 * 10, 360 / 25 * 10]).domain([0, 100]);
+
+	var thermometerValue = 0;
+
+	function ThermometerDirectiveFactory() {
+	    var directive = {
+	        restrict: 'E',
+	        scope: {},
+	        link: linkFunc
+	    };
+
+	    function linkFunc(scope, el) {
+	        var chart = d3.select(el[0]).append('svg').attr('width', 120).attr('height', 120).attr('viewBox', '0,0,' + width + ',' + height);
+
+	        chart.append('circle').attr('cx', cx).attr('cy', cy).attr('r', 59).attr('fill', '#ccc').attr('stroke', '#333');
+
+	        chart.append('circle').attr('cx', cx).attr('cy', cy).attr('r', 53).attr('fill', '#f7f7f7').attr('stroke', '#e0e0e0').attr('stroke-width', 2);
+
+	        var arc = d3.svg.arc().outerRadius(50).innerRadius(39);
+
+	        var pie = d3.layout.pie().sort(null);
+
+	        var data = pie([6, 4, 15]);
+	        data.pop();
+
+	        data[0].bgColor = '#ff9900';
+	        data[1].bgColor = '#dc3912';
+
+	        chart.selectAll('path').data(data).enter().append('path').attr('fill', function (d) {
+	            return d.bgColor;
+	        }).attr('d', arc).attr('transform', 'translate(60,60)');
+
+	        chart.append('text').attr('x', 60).attr('y', 50).attr('text-anchor', 'middle').style('font-size', 12).text('Popularity');
+
+	        chart.selectAll('text.tick-label').data([0, 100]).enter().append('text').attr('class', 'tick-label').attr('x', function (d) {
+	            return 60 + 39 * Math.sin(bigScale(d) * Math.PI / 180);
+	        }).attr('y', function (d) {
+	            return 60 - 39 * Math.cos(bigScale(d) * Math.PI / 180);
+	        }).attr('text-anchor', function (d) {
+	            if (d === 0) {
+	                return 'start';
+	            } else {
+	                return 'end';
+	            }
+	        }).style({
+	            'font-size': 6,
+	            'font-family': 'arial',
+	            'font-weight': 300
+	        }).text(function (d) {
+	            return d;
+	        });
+
+	        chart.selectAll('line.small-tick').data(d3.range(0, 21)).enter().append('line').attr('class', 'small-tick').attr('x1', 60).attr('y1', 10).attr('x2', 60).attr('y2', 15).attr('stroke', '#333').attr('transform', function (d) {
+	            return 'rotate(' + scale(d) + ', 60, 60)';
+	        });
+
+	        chart.selectAll('line.big-tick').data(d3.range(0, 101, 25)).enter().append('line').attr('class', 'big-tick').attr('x1', 60).attr('y1', 10).attr('x2', 60).attr('y2', 19).attr('stroke', '#333').attr('stroke-width', 2).attr('transform', function (d) {
+	            return 'rotate(' + bigScale(d) + ', 60, 60)';
+	        });
+
+	        var hand = chart.append('g');
+	        hand.append('text').attr('x', 60).attr('y', 100).attr('dy', '.35em').attr('text-anchor', 'middle').style({
+	            'font-family': 'arial',
+	            'font-size': 12
+	        }).text(thermometerValue);
+
+	        //let imageData = angular.element(el).html();
+	        //window.location.href = 'data:image/svg+xml;base64,'+window.btoa(unescape(encodeURIComponent(imageData)));
+	    }
+
+	    return directive;
+	}
+
+	exports['default'] = ThermometerDirectiveFactory;
+	module.exports = exports['default'];
+
+/***/ },
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -812,7 +914,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _directivesClocksDirective = __webpack_require__(16);
+	var _directivesClocksDirective = __webpack_require__(17);
 
 	var _directivesClocksDirective2 = _interopRequireDefault(_directivesClocksDirective);
 
@@ -822,11 +924,11 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports) {
 
 	/**
-	 * Created by tongda on 15/9/10.
+	 * Created by yao on 15/9/10.
 	 */
 	'use strict';
 
@@ -921,7 +1023,6 @@
 	                'font-weight': 300,
 	                'font-family': '"Josefin Sans", sans-serif'
 	            }).text(function (d) {
-	                console.log(d + ',' + hourScale(d));
 	                return d;
 	            });
 	        }
@@ -979,6 +1080,162 @@
 
 	exports['default'] = ClocksDirectiveFactory;
 	module.exports = exports['default'];
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by yaoshining on 16/8/14.
+	 */
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _directivesScrollbarDirective = __webpack_require__(19);
+
+	var _directivesScrollbarDirective2 = _interopRequireDefault(_directivesScrollbarDirective);
+
+	var scrollbarModule = angular.module('ngYao.scrollbar', []).directive('yaoScrollbar', _directivesScrollbarDirective2['default']);
+
+	exports['default'] = scrollbarModule;
+	module.exports = exports['default'];
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by yaoshining on 16/8/14.
+	 */
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
+	var _compScrollbar = __webpack_require__(20);
+
+	var Scrollbar = _interopRequireWildcard(_compScrollbar);
+
+	function ScrollbarDirectiveFactory() {
+
+	    function linkFunc(scope, iElement) {
+	        Scrollbar.initialize(iElement[0]);
+	    }
+
+	    var directive = {
+	        restrict: 'AE',
+	        link: linkFunc
+	    };
+	    return directive;
+	}
+
+	exports['default'] = ScrollbarDirectiveFactory;
+	module.exports = exports['default'];
+
+/***/ },
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by yaoshining on 16/8/14.
+	 */
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	var _mouseWheel = __webpack_require__(21);
+
+	function initialize(element, settings) {
+	    (0, _mouseWheel.addWheelListener)(element, function (e) {
+	        element.scrollTop += e.deltaY * 1;
+	        element.scrollLeft += e.deltaX * 1;
+
+	        e.stopPropagation();
+	        e.preventDefault();
+	    });
+	}
+
+	exports['default'] = {
+	    initialize: initialize
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 21 */
+/***/ function(module, exports) {
+
+	/**
+	 * Created by yaoshining on 16/8/14.
+	 */
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports.addWheelListener = addWheelListener;
+	var prefix = '',
+	    _addEventListener = undefined,
+	    support = undefined;
+
+	if (window.addEventListener) {
+	    _addEventListener = 'addEventListener';
+	} else {
+	    _addEventListener = 'attachEvent';
+	    prefix = 'on';
+	}
+
+	support = 'onwheel' in document.createElement('div') ? 'wheel' : document.onmousewheel !== undefined ? 'mousewheel' : 'DOMMouseScroll';
+
+	function addWheelListener(elem, callback, useCapture) {
+	    _addWheelListener(elem, support, callback, useCapture);
+
+	    if (support == 'DOMMouseScroll') {
+	        _addWheelListener(elem, 'MozMousePixelScroll', callback, useCapture);
+	    }
+	}
+
+	function _addWheelListener(elem, eventName, callback, useCapture) {
+	    elem[_addEventListener](prefix + eventName, support == 'wheel' ? callback : function (originalEvent) {
+
+	        var event = {
+	            originalEvent: originalEvent,
+	            target: originalEvent.target || originalEvent.srcElement,
+	            type: 'wheel',
+	            deltaMode: originalEvent.type == 'MozMousePixelScroll' ? 0 : 1,
+	            deltaX: 0,
+	            deltaY: 0,
+	            deltaZ: 0,
+	            preventDefault: function preventDefault() {
+	                if (originalEvent.preventDefault) {
+	                    originalEvent.preventDefault();
+	                } else {
+	                    originalEvent.returnValue = false;
+	                }
+	            }
+	        };
+
+	        if (support == 'mousewheel') {
+	            event.deltaY = -1 / 40 * originalEvent.wheelDelta;
+	            if (originalEvent.wheelDeltaX) {
+	                event.deltaX = -1 / 40 * originalEvent.wheelDeltaX;
+	            }
+	        } else {
+	            event.deltaY = originalEvent.detail;
+	        }
+
+	        return callback(event);
+	    }, useCapture || false);
+	}
 
 /***/ }
 /******/ ]);

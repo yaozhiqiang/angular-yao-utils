@@ -25,6 +25,9 @@ function routesConfig($stateProvider,$urlRouterProvider) {
     }).state('clocks',{
         url: '/clocks',
         templateUrl: 'app/clocks/demo/clocks.html'
+    }).state('scrollbar',{
+        url: '/scrollbar',
+        templateUrl: 'app/scrollbar/demo/scrollbar.html'
     });
     $urlRouterProvider.otherwise('/');
 }
