@@ -33,7 +33,7 @@ function EditableDirectiveFactory($timeout) {
 
     let directive = {
         restrict: 'AE',
-        scope: false,
+        scope: true,
         compile: compileFunc,
         controller: EditableController,
         controllerAs: '$yaoEditable'
