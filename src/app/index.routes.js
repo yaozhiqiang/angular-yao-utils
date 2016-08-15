@@ -28,6 +28,10 @@ function routesConfig($stateProvider,$urlRouterProvider) {
     }).state('scrollbar',{
         url: '/scrollbar',
         templateUrl: 'app/scrollbar/demo/scrollbar.html'
+    }).state('editable',{
+        url: '/editable',
+        templateUrl: 'app/editable/demo/editable.html',
+        controller: 'EditableDemoController'
     });
     $urlRouterProvider.otherwise('/');
 }

@@ -5,6 +5,17 @@
 .yao-clock-hands .hour-hand, .yao-clock-hands .minute-hand {
   stroke-width: 3px; }
 
+.yao-editable-text {
+  border: 1px dashed transparent; }
+  .yao-editable-text:hover {
+    border-color: #CCC; }
+
+.yao-editable-input {
+  border: 1px dashed #CCC; }
+  .yao-editable-input:focus {
+    outline: none;
+    width: 100%; }
+
 [yao-pageable-next].disabled, [yao-pageable-previous].disabled {
   pointer-events: none; }
 

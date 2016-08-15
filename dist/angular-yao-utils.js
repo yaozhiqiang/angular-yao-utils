@@ -83,7 +83,11 @@
 
 	var _scrollbarScrollbarModule2 = _interopRequireDefault(_scrollbarScrollbarModule);
 
-	var ngYaoUtils = angular.module('angular-yao-utils', [_stickyStickyModule2['default'].name, _pageablePageableModule2['default'].name, _coverflowCoverflowModule2['default'].name, _resizeResizeModule2['default'].name, _chartsChartsModule2['default'].name, _clocksClocksModule2['default'].name, _scrollbarScrollbarModule2['default'].name]);
+	var _editableEditableModule = __webpack_require__(22);
+
+	var _editableEditableModule2 = _interopRequireDefault(_editableEditableModule);
+
+	var ngYaoUtils = angular.module('angular-yao-utils', [_stickyStickyModule2['default'].name, _pageablePageableModule2['default'].name, _coverflowCoverflowModule2['default'].name, _resizeResizeModule2['default'].name, _chartsChartsModule2['default'].name, _clocksClocksModule2['default'].name, _scrollbarScrollbarModule2['default'].name, _editableEditableModule2['default'].name]);
 
 	exports['default'] = ngYaoUtils;
 	module.exports = exports['default'];
@@ -1236,6 +1240,93 @@
 	        return callback(event);
 	    }, useCapture || false);
 	}
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by yaoshining on 16/8/15.
+	 */
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _directivesEditableDirective = __webpack_require__(23);
+
+	var _directivesEditableDirective2 = _interopRequireDefault(_directivesEditableDirective);
+
+	var editableModule = angular.module('ngYao.editable', []).directive('yaoEditable', _directivesEditableDirective2['default']);
+
+	exports['default'] = editableModule;
+	module.exports = exports['default'];
+
+/***/ },
+/* 23 */
+/***/ function(module, exports) {
+
+	/**
+	 * Created by yaoshining on 16/8/15.
+	 */
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function EditableDirectiveFactory($timeout) {
+	    'ngInject';
+	    function compileFunc(tElem, tAttrs) {
+	        var textElem = angular.element('<span>').attr({
+	            'ng-hide': '$yaoEditable.isEditing'
+	        }).html('{{' + tAttrs.yaoEditable + '}}').addClass('yao-editable-text'),
+	            inputElem = angular.element('<input>').attr({
+	            'ng-model': tAttrs.yaoEditable,
+	            'ng-show': '$yaoEditable.isEditing',
+	            'ng-blur': '$yaoEditable.isEditing = false'
+	        }).addClass('yao-editable-input');
+	        tElem.append(inputElem).append(textElem);
+	        return {
+	            pre: function pre(scope, elem) {},
+	            post: function post(scope, elem, attrs, $editable) {
+	                elem.on('click', function () {
+	                    scope.$apply(function () {
+	                        $editable.isEditing = true;
+	                        $timeout(function () {
+	                            inputElem.focus();
+	                        }, 0);
+	                        inputElem.focus();
+	                    });
+	                });
+	            }
+	        };
+	    }
+
+	    var directive = {
+	        restrict: 'AE',
+	        scope: false,
+	        compile: compileFunc,
+	        controller: EditableController,
+	        controllerAs: '$yaoEditable'
+	    };
+
+	    return directive;
+	}
+
+	var EditableController = function EditableController() {
+	    _classCallCheck(this, EditableController);
+
+	    this.isEditing = false;
+	};
+
+	exports['default'] = EditableDirectiveFactory;
+	module.exports = exports['default'];
 
 /***/ }
 /******/ ]);
