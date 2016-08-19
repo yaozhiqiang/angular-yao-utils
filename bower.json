@@ -6,8 +6,8 @@
   ],
   "description": "Provider some useful angular utils for improving development efficiency.",
   "main": [
-    "dist/angular-yao-utils.min.js",
-    "dist/angular-yao-utils.min.css"
+    "dist/angular-yao-utils.js",
+    "dist/angular-yao-utils.css"
   ],
   "moduleType": [
     "amd",
