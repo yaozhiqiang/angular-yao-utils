@@ -44,8 +44,8 @@ function fullscreenServiceFactory($compile, $templateRequest, $rootScope, $contr
                 angular.element(document.body).append(compiled);
                 setTimeout(() => {
                     container.removeClass('shrink');
+                    container.removeClass('invisible');
                     setTimeout(() => {
-                        container.removeClass('invisible');
                         scope.$broadcast('yaoFullscreen.afterRender');
                     }, 600);
                 }, 100);

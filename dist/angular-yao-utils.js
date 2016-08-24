@@ -1427,8 +1427,8 @@
 	                    angular.element(document.body).append(compiled);
 	                    setTimeout(function () {
 	                        container.removeClass('shrink');
+	                        container.removeClass('invisible');
 	                        setTimeout(function () {
-	                            container.removeClass('invisible');
 	                            scope.$broadcast('yaoFullscreen.afterRender');
 	                        }, 600);
 	                    }, 100);
