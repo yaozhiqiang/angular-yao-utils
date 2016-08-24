@@ -35,6 +35,8 @@
     right: 45%;
     bottom: 45%;
     visibility: hidden; }
+  .yao-fullscreen-wrapper.invisible * {
+    visibility: hidden; }
 
 [yao-pageable-next].disabled, [yao-pageable-previous].disabled {
   pointer-events: none; }

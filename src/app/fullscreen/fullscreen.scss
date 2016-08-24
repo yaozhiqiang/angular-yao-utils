@@ -17,4 +17,8 @@
     bottom: 45%;
     visibility: hidden;
   }
+
+  &.invisible * {
+    visibility: hidden;
+  }
 }

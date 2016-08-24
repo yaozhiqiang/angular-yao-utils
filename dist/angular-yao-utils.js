@@ -1381,6 +1381,7 @@
 	    var container = angular.element('<div>');
 	    container.addClass('yao-fullscreen-wrapper');
 	    container.addClass('shrink');
+	    container.addClass('invisible');
 
 	    var defaultOptions = {
 	        templateUrl: null,
@@ -1422,10 +1423,13 @@
 	                        }
 	                    }
 	                    container.append(tpl);
-	                    var compiled = $compile(container)(scope);
-	                    angular.element(document.body).append(compiled);
+	                    angular.element(document.body).append(container);
 	                    setTimeout(function () {
 	                        container.removeClass('shrink');
+	                        setTimeout(function () {
+	                            container.removeClass('invisible');
+	                            $compile(container)(scope);
+	                        }, 600);
 	                    }, 100);
 	                });
 	            }
@@ -1433,6 +1437,7 @@
 	            key: 'close',
 	            value: function close() {
 	                container.addClass('shrink');
+	                container.addClass('invisible');
 	                setTimeout(function () {
 	                    if (container.scope()) {
 	                        container.scope().$destroy();

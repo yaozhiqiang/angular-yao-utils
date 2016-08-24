@@ -7,6 +7,7 @@ function fullscreenServiceFactory($compile, $templateRequest, $rootScope, $contr
     const container = angular.element('<div>');
     container.addClass('yao-fullscreen-wrapper');
     container.addClass('shrink');
+    container.addClass('invisible');
 
     const defaultOptions = {
         templateUrl: null,
@@ -39,16 +40,20 @@ function fullscreenServiceFactory($compile, $templateRequest, $rootScope, $contr
                     }
                 }
                 container.append(tpl);
-                const compiled = $compile(container)(scope);
-                angular.element(document.body).append(compiled);
+                angular.element(document.body).append(container);
                 setTimeout(() => {
                     container.removeClass('shrink');
+                    setTimeout(() => {
+                        container.removeClass('invisible');
+                        $compile(container)(scope);
+                    }, 600);
                 }, 100);
             });
         }
 
         close() {
             container.addClass('shrink');
+            container.addClass('invisible');
             setTimeout(() => {
                 if(container.scope()) {
                     container.scope().$destroy();
