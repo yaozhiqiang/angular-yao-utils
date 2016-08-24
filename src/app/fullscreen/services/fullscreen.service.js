@@ -39,13 +39,14 @@ function fullscreenServiceFactory($compile, $templateRequest, $rootScope, $contr
                         scope[controllerAs] = ctrl;
                     }
                 }
-                angular.element(document.body).append(container);
+                container.append(tpl);
+                let compiled = $compile(container)(scope);
+                angular.element(document.body).append(compiled);
                 setTimeout(() => {
                     container.removeClass('shrink');
                     setTimeout(() => {
-                        container.append(tpl);
-                        $compile(container)(scope);
                         container.removeClass('invisible');
+                        scope.$broadcast('yaoFullscreen.afterRender');
                     }, 600);
                 }, 100);
             });

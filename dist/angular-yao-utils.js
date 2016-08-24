@@ -1422,13 +1422,14 @@
 	                            scope[controllerAs] = ctrl;
 	                        }
 	                    }
-	                    angular.element(document.body).append(container);
+	                    container.append(tpl);
+	                    var compiled = $compile(container)(scope);
+	                    angular.element(document.body).append(compiled);
 	                    setTimeout(function () {
 	                        container.removeClass('shrink');
 	                        setTimeout(function () {
-	                            container.append(tpl);
-	                            $compile(container)(scope);
 	                            container.removeClass('invisible');
+	                            scope.$broadcast('yaoFullscreen.afterRender');
 	                        }, 600);
 	                    }, 100);
 	                });
