@@ -9,6 +9,7 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, .5);
   transition: all ease .5s;
   visibility: visible;
+  overflow: hidden;
   &.shrink {
     top: 45%;
     left: 45%;
