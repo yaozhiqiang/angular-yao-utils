@@ -39,13 +39,13 @@ function fullscreenServiceFactory($compile, $templateRequest, $rootScope, $contr
                         scope[controllerAs] = ctrl;
                     }
                 }
-                container.append(tpl);
                 angular.element(document.body).append(container);
                 setTimeout(() => {
                     container.removeClass('shrink');
                     setTimeout(() => {
-                        container.removeClass('invisible');
+                        container.append(tpl);
                         $compile(container)(scope);
+                        container.removeClass('invisible');
                     }, 600);
                 }, 100);
             });

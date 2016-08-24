@@ -1422,13 +1422,13 @@
 	                            scope[controllerAs] = ctrl;
 	                        }
 	                    }
-	                    container.append(tpl);
 	                    angular.element(document.body).append(container);
 	                    setTimeout(function () {
 	                        container.removeClass('shrink');
 	                        setTimeout(function () {
-	                            container.removeClass('invisible');
+	                            container.append(tpl);
 	                            $compile(container)(scope);
+	                            container.removeClass('invisible');
 	                        }, 600);
 	                    }, 100);
 	                });
