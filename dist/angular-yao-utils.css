@@ -27,7 +27,8 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   -webkit-transition: all ease .5s;
           transition: all ease .5s;
-  visibility: visible; }
+  visibility: visible;
+  overflow: hidden; }
   .yao-fullscreen-wrapper.shrink {
     top: 45%;
     left: 45%;
