@@ -1,3 +1,10 @@
+@import url(http://fonts.useso.com/css?family=Josefin+Sans:100,300,400,600);
+.yao-clock-hands .second-hand {
+  stroke-width: 1px; }
+
+.yao-clock-hands .hour-hand, .yao-clock-hands .minute-hand {
+  stroke-width: 3px; }
+
 .yao-editable-text {
   border: 1px dashed transparent; }
   .yao-editable-text:hover {
@@ -8,13 +15,6 @@
   .yao-editable-input:focus {
     outline: none;
     width: 100%; }
-
-@import url(http://fonts.useso.com/css?family=Josefin+Sans:100,300,400,600);
-.yao-clock-hands .second-hand {
-  stroke-width: 1px; }
-
-.yao-clock-hands .hour-hand, .yao-clock-hands .minute-hand {
-  stroke-width: 3px; }
 
 .yao-fullscreen-wrapper {
   position: absolute;

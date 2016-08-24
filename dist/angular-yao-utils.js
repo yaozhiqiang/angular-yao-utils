@@ -1406,7 +1406,7 @@
 
 	                $templateRequest(templateUrl).then(function (tpl) {
 	                    var scope = $rootScope.$new(true);
-	                    if (angular.isString(controller) || angular.isObject(controller)) {
+	                    if (angular.isString(controller) || angular.isFunction(controller)) {
 	                        var locals = {
 	                            $scope: scope,
 	                            $element: container

@@ -23,7 +23,7 @@ function fullscreenServiceFactory($compile, $templateRequest, $rootScope, $contr
                 controllerAs, resolve} = options;
             $templateRequest(templateUrl).then(tpl => {
                 const scope = $rootScope.$new(true);
-                if(angular.isString(controller) || angular.isObject(controller)) {
+                if(angular.isString(controller) || angular.isFunction(controller)) {
                     let locals = {
                         $scope: scope,
                         $element: container
