@@ -1,0 +1,19 @@
+.yao-fullscreen-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ffffff;
+  z-index: 99999;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+  transition: all ease .5s;
+  visibility: visible;
+  &.shrink {
+    top: 45%;
+    left: 45%;
+    right: 45%;
+    bottom: 45%;
+    visibility: hidden;
+  }
+}

@@ -32,6 +32,10 @@ function routesConfig($stateProvider,$urlRouterProvider) {
         url: '/editable',
         templateUrl: 'app/editable/demo/editable.html',
         controller: 'EditableDemoController'
+    }).state('fullscreen',{
+        url: '/fullscreen',
+        templateUrl: 'app/fullscreen/demo/fullscreen.html',
+        controller: 'FullScreenDemoController'
     });
     $urlRouterProvider.otherwise('/');
 }

@@ -9,6 +9,7 @@ import chartsModule from './charts/charts.module';
 import clocksModule from './clocks/clocks.module';
 import scrollbarModule from './scrollbar/scrollbar.module';
 import editableModule from './editable/editable.module';
+import fullscreenModule from './fullscreen/fullscreen.module';
 
 var ngYaoUtils = angular.module('angular-yao-utils',[
     stickyModule.name,
@@ -18,7 +19,8 @@ var ngYaoUtils = angular.module('angular-yao-utils',[
     chartsModule.name,
     clocksModule.name,
     scrollbarModule.name,
-    editableModule.name
+    editableModule.name,
+    fullscreenModule.name
 ]);
 
 export default ngYaoUtils;

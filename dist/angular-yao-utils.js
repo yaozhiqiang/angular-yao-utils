@@ -87,7 +87,11 @@
 
 	var _editableEditableModule2 = _interopRequireDefault(_editableEditableModule);
 
-	var ngYaoUtils = angular.module('angular-yao-utils', [_stickyStickyModule2['default'].name, _pageablePageableModule2['default'].name, _coverflowCoverflowModule2['default'].name, _resizeResizeModule2['default'].name, _chartsChartsModule2['default'].name, _clocksClocksModule2['default'].name, _scrollbarScrollbarModule2['default'].name, _editableEditableModule2['default'].name]);
+	var _fullscreenFullscreenModule = __webpack_require__(24);
+
+	var _fullscreenFullscreenModule2 = _interopRequireDefault(_fullscreenFullscreenModule);
+
+	var ngYaoUtils = angular.module('angular-yao-utils', [_stickyStickyModule2['default'].name, _pageablePageableModule2['default'].name, _coverflowCoverflowModule2['default'].name, _resizeResizeModule2['default'].name, _chartsChartsModule2['default'].name, _clocksClocksModule2['default'].name, _scrollbarScrollbarModule2['default'].name, _editableEditableModule2['default'].name, _fullscreenFullscreenModule2['default'].name]);
 
 	exports['default'] = ngYaoUtils;
 	module.exports = exports['default'];
@@ -1326,6 +1330,126 @@
 	};
 
 	exports['default'] = EditableDirectiveFactory;
+	module.exports = exports['default'];
+
+/***/ },
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by yaoshining on 16/8/23.
+	 */
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _servicesFullscreenService = __webpack_require__(25);
+
+	var _servicesFullscreenService2 = _interopRequireDefault(_servicesFullscreenService);
+
+	var fullscreenModule = angular.module('ngYao.fullscreen', []);
+
+	fullscreenModule.factory('yaoFullscreen', _servicesFullscreenService2['default']);
+
+	exports['default'] = fullscreenModule;
+	module.exports = exports['default'];
+
+/***/ },
+/* 25 */
+/***/ function(module, exports) {
+
+	/**
+	 * Created by yaoshining on 16/8/23.
+	 */
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function fullscreenServiceFactory($compile, $templateRequest, $rootScope, $controller) {
+	    'ngInject';
+
+	    var container = angular.element('<div>');
+	    container.addClass('yao-fullscreen-wrapper');
+	    container.addClass('shrink');
+
+	    var defaultOptions = {
+	        templateUrl: null,
+	        controller: null,
+	        controllerAs: null,
+	        resolve: null
+	    };
+
+	    var FullscreenService = (function () {
+	        function FullscreenService() {
+	            _classCallCheck(this, FullscreenService);
+	        }
+
+	        _createClass(FullscreenService, [{
+	            key: 'open',
+	            value: function open(options) {
+	                options = angular.extend({}, defaultOptions, options);
+	                var _options = options;
+	                var templateUrl = _options.templateUrl;
+	                var controller = _options.controller;
+	                var controllerAs = _options.controllerAs;
+	                var resolve = _options.resolve;
+
+	                $templateRequest(templateUrl).then(function (tpl) {
+	                    var scope = $rootScope.$new(true);
+	                    if (angular.isString(controller) || angular.isObject(controller)) {
+	                        var locals = {
+	                            $scope: scope,
+	                            $element: container
+	                        };
+
+	                        if (angular.isObject(resolve)) {
+	                            angular.extend(locals, resolve);
+	                        }
+
+	                        var ctrl = $controller(controller, locals);
+	                        if (controllerAs && angular.isString(controllerAs)) {
+	                            scope[controllerAs] = ctrl;
+	                        }
+	                    }
+	                    container.append(tpl);
+	                    var compiled = $compile(container)(scope);
+	                    angular.element(document.body).append(compiled);
+	                    setTimeout(function () {
+	                        container.removeClass('shrink');
+	                    }, 100);
+	                });
+	            }
+	        }, {
+	            key: 'close',
+	            value: function close() {
+	                container.addClass('shrink');
+	                setTimeout(function () {
+	                    if (container.scope()) {
+	                        container.scope().$destroy();
+	                    }
+	                    container.detach();
+	                    container.empty();
+	                }, 600);
+	            }
+	        }]);
+
+	        return FullscreenService;
+	    })();
+
+	    return new FullscreenService();
+	}
+
+	exports['default'] = fullscreenServiceFactory;
 	module.exports = exports['default'];
 
 /***/ }
