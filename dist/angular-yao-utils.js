@@ -93,6 +93,15 @@
 
 	var ngYaoUtils = angular.module('angular-yao-utils', [_stickyStickyModule2['default'].name, _pageablePageableModule2['default'].name, _coverflowCoverflowModule2['default'].name, _resizeResizeModule2['default'].name, _chartsChartsModule2['default'].name, _clocksClocksModule2['default'].name, _scrollbarScrollbarModule2['default'].name, _editableEditableModule2['default'].name, _fullscreenFullscreenModule2['default'].name]);
 
+	ngYaoUtils.factory('yaoGuid', function () {
+	    function s4() {
+	        return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+	    }
+	    return function () {
+	        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+	    };
+	});
+
 	exports['default'] = ngYaoUtils;
 	module.exports = exports['default'];
 
