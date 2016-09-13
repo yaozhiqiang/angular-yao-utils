@@ -11,6 +11,8 @@ import scrollbarModule from './scrollbar/scrollbar.module';
 import editableModule from './editable/editable.module';
 import fullscreenModule from './fullscreen/fullscreen.module';
 
+import download from './downloadify/downloadify';
+
 var ngYaoUtils = angular.module('angular-yao-utils',[
     stickyModule.name,
     pageableModule.name,
@@ -34,5 +36,7 @@ ngYaoUtils.factory('yaoGuid', function() {
             s4() + '-' + s4() + s4() + s4();
     };
 });
+
+angular.download = download;
 
 export default ngYaoUtils;

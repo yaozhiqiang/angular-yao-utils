@@ -36,6 +36,10 @@ function routesConfig($stateProvider,$urlRouterProvider) {
         url: '/fullscreen',
         templateUrl: 'app/fullscreen/demo/fullscreen.html',
         controller: 'FullScreenDemoController'
+    }).state('downloadify',{
+        url: '/downloadify',
+        templateUrl: 'app/downloadify/demo/downloadify.html',
+        controller: 'DownloadifyDemoController'
     });
     $urlRouterProvider.otherwise('/');
 }

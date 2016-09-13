@@ -91,6 +91,10 @@
 
 	var _fullscreenFullscreenModule2 = _interopRequireDefault(_fullscreenFullscreenModule);
 
+	var _downloadifyDownloadify = __webpack_require__(26);
+
+	var _downloadifyDownloadify2 = _interopRequireDefault(_downloadifyDownloadify);
+
 	var ngYaoUtils = angular.module('angular-yao-utils', [_stickyStickyModule2['default'].name, _pageablePageableModule2['default'].name, _coverflowCoverflowModule2['default'].name, _resizeResizeModule2['default'].name, _chartsChartsModule2['default'].name, _clocksClocksModule2['default'].name, _scrollbarScrollbarModule2['default'].name, _editableEditableModule2['default'].name, _fullscreenFullscreenModule2['default'].name]);
 
 	ngYaoUtils.factory('yaoGuid', function () {
@@ -101,6 +105,8 @@
 	        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 	    };
 	});
+
+	angular.download = _downloadifyDownloadify2['default'];
 
 	exports['default'] = ngYaoUtils;
 	module.exports = exports['default'];
@@ -1465,6 +1471,43 @@
 	}
 
 	exports['default'] = fullscreenServiceFactory;
+	module.exports = exports['default'];
+
+/***/ },
+/* 26 */
+/***/ function(module, exports) {
+
+	/**
+	 * Created by yaoshining on 16/9/13.
+	 */
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	function b64EncodeUnicode(str) {
+	    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, p1) {
+	        return String.fromCharCode('0x' + p1);
+	    }));
+	}
+
+	function download(target) {
+	    var content = undefined,
+	        url = null;
+	    if (target instanceof HTMLElement) {
+	        content = target.outerHTML;
+	    }
+	    if (typeof target === 'string') {
+	        content = target;
+	    }
+	    if (content) {
+	        url = 'data:application/octet-stream;base64,' + b64EncodeUnicode(content);
+	        window.open(url);
+	    }
+	}
+
+	exports['default'] = download;
 	module.exports = exports['default'];
 
 /***/ }
