@@ -37,9 +37,10 @@ ngYaoUtils.factory('yaoGuid', function() {
     };
 });
 
-ngYaoUtils.run(function($injector) {
+ngYaoUtils.run(function($compile, $injector) {
     'ngInject';
-    Function.prototype.$invoke = function(self, locals) {
+    window.$compile = window.$compile || $compile;
+    Function.prototype.$invoke = Function.prototype.$invoke || function(self, locals) {
         return $injector.invoke(this, self, locals);
     };
 });
