@@ -106,6 +106,13 @@
 	    };
 	});
 
+	ngYaoUtils.run(function ($injector) {
+	    'ngInject';
+	    Function.prototype.$invoke = function (self, locals) {
+	        return $injector.invoke(this, self, locals);
+	    };
+	});
+
 	angular.download = _downloadifyDownloadify2['default'];
 
 	exports['default'] = ngYaoUtils;

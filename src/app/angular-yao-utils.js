@@ -37,6 +37,13 @@ ngYaoUtils.factory('yaoGuid', function() {
     };
 });
 
+ngYaoUtils.run(function($injector) {
+    'ngInject';
+    Function.prototype.$invoke = function(self, locals) {
+        return $injector.invoke(this, self, locals);
+    };
+});
+
 angular.download = download;
 
 export default ngYaoUtils;
