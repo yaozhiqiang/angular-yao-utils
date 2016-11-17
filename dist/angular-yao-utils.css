@@ -38,6 +38,12 @@
   .yao-fullscreen-wrapper.invisible * {
     visibility: hidden; }
 
+html.fullscreen-mode {
+  height: 100% !important; }
+  html.fullscreen-mode body {
+    height: 100% !important;
+    overflow: hidden !important; }
+
 [yao-pageable-next].disabled, [yao-pageable-previous].disabled {
   pointer-events: none; }
 

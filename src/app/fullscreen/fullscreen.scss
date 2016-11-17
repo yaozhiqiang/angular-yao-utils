@@ -22,3 +22,13 @@
     visibility: hidden;
   }
 }
+
+html.fullscreen-mode {
+  height: 100%!important;
+
+  body {
+    height: 100%!important;
+    overflow: hidden!important;
+  }
+
+}

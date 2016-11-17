@@ -1447,6 +1447,7 @@
 	                    }
 	                    container.append(tpl);
 	                    var compiled = $compile(container)(scope);
+	                    angular.element(document.children).addClass('fullscreen-mode');
 	                    angular.element(document.body).append(compiled);
 	                    setTimeout(function () {
 	                        container.removeClass('shrink');
@@ -1462,6 +1463,7 @@
 	            value: function close() {
 	                container.addClass('shrink');
 	                container.addClass('invisible');
+	                angular.element(document.children).removeClass('fullscreen-mode');
 	                setTimeout(function () {
 	                    if (container.scope()) {
 	                        container.scope().$destroy();

@@ -41,6 +41,7 @@ function fullscreenServiceFactory($compile, $templateRequest, $rootScope, $contr
                 }
                 container.append(tpl);
                 let compiled = $compile(container)(scope);
+                angular.element(document.children).addClass('fullscreen-mode');
                 angular.element(document.body).append(compiled);
                 setTimeout(() => {
                     container.removeClass('shrink');
@@ -55,6 +56,7 @@ function fullscreenServiceFactory($compile, $templateRequest, $rootScope, $contr
         close() {
             container.addClass('shrink');
             container.addClass('invisible');
+            angular.element(document.children).removeClass('fullscreen-mode');
             setTimeout(() => {
                 if(container.scope()) {
                     container.scope().$destroy();
