@@ -1,5 +1,5 @@
 {
-  "name": "ng-yao-utils",
+  "name": "angular-yao-utils",
   "version": "1.0.0",
   "description": "Provider some useful angular utils for improving development efficiency.",
   "main": "index.js",
